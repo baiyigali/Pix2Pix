@@ -15,11 +15,14 @@ The original paper aims at building a *simple* but agnostic architecture (*ie no
 
 The Generative Adversarial Network framework fits particularly well these constraints, and the focus is laid on conditional GANs (cGANs) which learn a conditional generative model, suitable for the image-to-image framework where there is an intrinsic notion of label (we do not want to randomly draw sample from a distribution on natural images, hence the conditional constraint).
 
-The formal objective is composed of two terms : 
+The formal objective is composed of two terms :
+
 ![](imgs/total_loss.gif)
-- the traditional adversarial learning loss between generator and discriminator (with log trick) : 
+- the traditional adversarial learning loss between generator and discriminator (with log trick) :
+
 ![](imgs/cGAN_loss.gif)
 - an additional L1 regularization on generator :
+
 ![](imgs/l1_loss.gif)
 
 ### Architecture
@@ -31,6 +34,5 @@ The formal objective is composed of two terms :
 ### Optimization and inference
 
 Standard optimization using minibatch SGD (alternating gradient descent on G and D, one-step each), with ADAM solver. Dropout is also applied to account for stochasticity in generator (deterministic outputs is one issue of cGANs), but should be considered as part of the generative process rather than an additional regularization constraint because it was chosen to be kept during the test phase.
-*Importance normalization* was also used (aka batch normalization using test data statistics for batch size of 1 during testing phase).
 
-![Ongoing project, not finished yet ...](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+*Importance normalization* was also used (aka batch normalization using test data statistics for batch size of 1 during testing phase).
